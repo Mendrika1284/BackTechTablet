@@ -3,6 +3,18 @@
 
 <div class="content">
     <div class="row">
+        <div class="col-md-6">
+            <form action="{{ route('commandes.index') }}" method="GET" role="search">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="search" placeholder="Rechercher par nom">
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-default">
+                            <span class="nc-icon nc-zoom-split"></span>
+                        </button>
+                    </span>
+                </div>
+            </form>
+        </div>
         <table class="table table-hover table-bordered">
             <thead>
                 <tr>
@@ -10,7 +22,20 @@
                     <th class="text-center" scope="col">Nom</th>
                     <th class="text-center" scope="col">Prénom</th>
                     <th class="text-center" scope="col">Nombre produit acheter</th>
-                    <th class="text-center" scope="col">Total</th>
+                    <th class="text-center" scope="col">
+                        <a href="{{ route('commandes.index', ['sort' => 'price', 'order' => request('order') == 'asc' ? 'desc' : 'asc']) }}">
+                            Total
+                            @if(request('sort') == 'price')
+                                @if(request('order') == 'asc')
+                                    <i class="fa fa-sort-asc"></i>
+                                @else
+                                    <i class="fa fa-sort-desc"></i>
+                                @endif
+                            @else
+                                <i class="fa fa-sort"></i>
+                            @endif
+                        </a>
+                    </th>                    
                 </tr>
             </thead>
             <tbody>

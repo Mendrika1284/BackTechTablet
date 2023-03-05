@@ -18,7 +18,7 @@ use App\Http\Controllers\HistoriqueController;
 */
 
 Route::get('/',[BackController::class, 'index']);
-Route::get('/historique',[HistoriqueController::class, 'index']);
+Route::get('/historique',[HistoriqueController::class, 'index'])->name('commandes.index');
 Route::get('/product',[ProductController::class, 'getAllProduct']);
 Route::get('/get-commande-details/{commandeId}', function($commandeId) {
     $commandeDetails = Commande::where('commande_meres_id', $commandeId)->get();
